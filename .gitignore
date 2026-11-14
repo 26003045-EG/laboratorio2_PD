@@ -6,6 +6,8 @@ __pycache__/
 *.pyc
 data/entrada/*.csv
 shared/runs/*.json
+shared/
+.cache/
 *.sqlite
 *.db
 *.zip

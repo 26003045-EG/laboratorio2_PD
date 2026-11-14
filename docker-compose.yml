@@ -1,4 +1,4 @@
-name: novamercado-lab2
+name: laboratorio2-pd
 services:
   db:
     image: postgres:16.8
@@ -49,7 +49,7 @@ services:
       - ./dags:/opt/airflow/dags:ro
       - ./shared:/shared
     entrypoint: /bin/bash
-    command: -c "airflow db migrate && airflow users create --role Admin --username $${AIRFLOW_USER_NAME:-admin} --password $${AIRFLOW_USER_PASS:-admin} --firstname Lab --lastname Nova --email lab@localhost.invalid || true"
+    command: -c "airflow db migrate && (airflow users create --role Admin --username $${AIRFLOW_USER_NAME:-admin} --password $${AIRFLOW_USER_PASS:-admin} --firstname Lab --lastname Nova --email lab@localhost.invalid || airflow users reset-password --username $${AIRFLOW_USER_NAME:-admin} --password $${AIRFLOW_USER_PASS:-admin})"
     environment: &airflow_env
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:${AIRFLOW_DB_PASSWORD}@airflow-db:5432/airflow

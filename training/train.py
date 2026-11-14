@@ -22,7 +22,11 @@ def load_data():
     df = pd.read_csv(path / 'historico_ventas.csv', parse_dates=['fecha'])
     # Last-observed values overwrite historical records for same day/store/family.
     engine = create_engine(os.environ['DATABASE_URL'])
-    observed = pd.read_sql('SELECT fecha,tienda_id,familia_id,ventas FROM observaciones', engine)
+    # Airflow 2 utiliza SQLAlchemy 1.4; pandas 2.2 exige 2.x para read_sql.
+    with engine.connect() as connection:
+        rows = connection.execute(text('SELECT fecha,tienda_id,familia_id,ventas FROM observaciones'))
+        observed = pd.DataFrame(rows.fetchall(), columns=list(rows.keys()))
+    engine.dispose()
     if not observed.empty:
         observed['fecha'] = pd.to_datetime(observed['fecha'])
         observed['en_promocion'] = 0  # Observations omit promotions, never infer actual ones.
@@ -51,7 +55,8 @@ def register(client, model, name, result, kind):
                 mlflow.log_metric(f'{label}_{key}', value)
         for label, window in result['ventanas'].items():
             mlflow.log_params({f'{label}_{k}': v for k, v in window.items()})
-        info = mlflow.sklearn.log_model(model, artifact_path='modelo', registered_model_name=MODEL_NAME)
+        info = mlflow.sklearn.log_model(model, artifact_path='modelo', registered_model_name=MODEL_NAME,
+                                       pip_requirements=['scikit-learn==1.6.1', 'pandas==2.2.3', 'numpy==1.26.4'])
         version = str(info.registered_model_version)
         if not version or version == 'None':
             own = [v for v in client.search_model_versions(f"name='{MODEL_NAME}'") if v.run_id == run.info.run_id]

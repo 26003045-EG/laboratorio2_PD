@@ -1,0 +1,31 @@
+{
+  "baseline": {
+    "mae": 109.84910714285714,
+    "costo_medio": 91.62431547619046,
+    "costo_total": 307857.69999999995
+  },
+  "candidato": {
+    "mae": 47.716016898426446,
+    "costo_medio": 37.942767857142854,
+    "costo_total": 127487.7
+  },
+  "datos_sha256": "98b9a8d4dab9de57468eb85048fdcc4b2658a0c2e13efc253572793a6e08e21d",
+  "ventanas": {
+    "entrenamiento": {
+      "inicio": "2024-03-01",
+      "fin": "2026-01-03",
+      "filas": 76332
+    },
+    "calibracion": {
+      "inicio": "2026-01-04",
+      "fin": "2026-01-31",
+      "filas": 3360
+    },
+    "evaluacion": {
+      "inicio": "2026-02-01",
+      "fin": "2026-02-28",
+      "filas": 3360
+    }
+  },
+  "mejora_costo_pct": 58.58875707835145
+}

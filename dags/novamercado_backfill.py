@@ -11,6 +11,6 @@ def reprocesar(**context):
 
 
 with DAG('novamercado_backfill', start_date=datetime(2025, 1, 1),
-         schedule=None, catchup=False, max_active_runs=1,
+         schedule=None, catchup=False, max_active_runs=1, is_paused_upon_creation=False,
          tags=['novamercado', 'backfill']) as dag:
     PythonOperator(task_id='reprocesar_fechas', python_callable=reprocesar, retries=1)

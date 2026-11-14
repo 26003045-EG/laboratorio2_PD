@@ -30,7 +30,8 @@ def backfill(start, end, database='shared/backfill/resultados.sqlite', tracking_
         for day in pd.date_range(start, end):
             # Huella solo de información utilizada hasta este día; no depende de días futuros.
             available = df[df.fecha <= day].sort_values(['fecha', 'tienda_id', 'familia_id'])
-            signature = hashlib.sha256((available.to_csv(index=False) + json.dumps(costs, sort_keys=True) + POLICY).encode()).hexdigest()
+            signature = hashlib.sha256((available.to_csv(index=False) + feature_table(available).to_csv(index=False)
+                                        + json.dumps(costs, sort_keys=True) + POLICY).encode()).hexdigest()
             key = f'{day.date()}-{signature}'
             previous = db.execute('SELECT informe FROM resultados WHERE clave=?', (key,)).fetchone()
             if previous:
@@ -50,7 +51,8 @@ def backfill(start, end, database='shared/backfill/resultados.sqlite', tracking_
                         mlflow.log_dict(report, 'evaluacion.json')
                         mlflow.log_params({'datos_sha256': report['datos_sha256'], 'politica': POLICY})
                         mlflow.log_metrics({f'{label}_{k}': v for label in ('baseline', 'candidato') for k, v in report[label].items()})
-                        mlflow.sklearn.log_model(model, artifact_path='modelo')
+                        mlflow.sklearn.log_model(model, artifact_path='modelo',
+                                                pip_requirements=['scikit-learn==1.6.1', 'pandas==2.2.3', 'numpy==1.26.4'])
             with db:
                 db.executemany('INSERT OR REPLACE INTO predicciones VALUES (?,?,?,?,?)',
                                [(key, int(row.tienda_id), str(row.familia_id), max(float(y), 0), int(q))

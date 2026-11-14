@@ -9,7 +9,7 @@ def reentrenar(**context):
 
 
 with DAG('novamercado_reentrenamiento', start_date=datetime(2025, 1, 1),
-         schedule=None, catchup=False, max_active_runs=1,
+         schedule=None, catchup=False, max_active_runs=1, is_paused_upon_creation=False,
          dagrun_timeout=timedelta(minutes=10), tags=['novamercado', 'ml']) as dag:
     PythonOperator(task_id='entrenar_evaluar_y_promover', python_callable=reentrenar,
                    execution_timeout=timedelta(minutes=10), retries=0)
