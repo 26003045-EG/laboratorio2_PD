@@ -78,4 +78,4 @@ Ver `evidencias/PRUEBAS.md` para distinguir comprobaciones realizadas y pendient
 
 Ramas main, develop y feature por funcionalidad; commits breves en espa?ol. Ver `IMPLEMENTACION.md` para el estado de publicaci?n. El repositorio GitHub previsto es privado: `26003045-EG/laboratorio2_PD`. El propietario debe dar acceso al equipo docente desde la configuraci?n de colaboradores.
 
-Despu?s de validar el despliegue, integrar develop a main mediante PR y crear el tag `entrega-lab2` con fecha real. No se cambian fechas para simular una entrega anterior. No marcar la entrega lista mientras falten pruebas de operaci?n.
+Entrega identificada por el tag `entrega-lab2`, integrado de develop a main mediante PR con fecha real. Por indicaci?n del propietario se publica sin verificar la operaci?n completa con Docker. Esa validaci?n y los tiempos del enunciado siguen pendientes; las pruebas de CI no los acreditan.
