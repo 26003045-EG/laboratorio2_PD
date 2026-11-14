@@ -2,6 +2,7 @@ import os
 import threading
 import time
 import mlflow
+import mlflow.sklearn
 from mlflow.tracking import MlflowClient
 
 MODEL_NAME = os.getenv('MODEL_NAME', 'NovaMercadoVentas')
@@ -16,6 +17,8 @@ class ModelCache:
         self.available = False
 
     def refresh(self, force=False):
+        os.environ.setdefault('MLFLOW_HTTP_REQUEST_TIMEOUT', '5')
+        os.environ.setdefault('MLFLOW_HTTP_REQUEST_MAX_RETRIES', '0')
         with self.lock:
             if not force and time.monotonic() - self.checked < 15:
                 return

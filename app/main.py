@@ -2,6 +2,7 @@ import math
 import os
 import time
 import uuid
+import asyncio
 from contextlib import asynccontextmanager
 from datetime import date
 import requests
@@ -25,7 +26,19 @@ async def lifespan(app):
         cache.refresh(force=True)
     except Exception:
         pass
-    yield
+    async def refrescar():
+        while True:
+            await asyncio.to_thread(cache.refresh, True)
+            await asyncio.sleep(15)
+    task = asyncio.create_task(refrescar())
+    try:
+        yield
+    finally:
+        task.cancel()
+        try:
+            await task
+        except asyncio.CancelledError:
+            pass
 
 app = FastAPI(title='NovaMercado | Servicio de predicción', version='1.0.0', lifespan=lifespan)
 
@@ -124,7 +137,7 @@ def health():
     if not cache.available:
         reasons.append('MLflow no disponible; se usa modelo en memoria')
     try:
-        resp = airflow_request('GET', 'health', timeout=3)
+        resp = requests.get(f'{AIRFLOW_URL}/health', timeout=3)
         if resp.status_code != 200:
             reasons.append('Airflow no disponible')
     except Exception:
