@@ -36,4 +36,4 @@ class ModelCache:
                 self.available = False
                 # Never discard an already loaded model during MLflow outage.
 
-cache = ModelCache()
+cache = ModelCache() 
