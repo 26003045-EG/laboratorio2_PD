@@ -11,6 +11,7 @@ from sqlalchemy import text
 from .cleaning import normalize_payload
 from .contracts import PredictionResponse, PredictionItem, ObservationResponse
 from .data import catalogs, feature_table
+from .business import suggestions
 from .database import engine, init_db, save_predictions, save_observations
 from .model_cache import cache, MODEL_NAME, ALIAS
 
@@ -61,14 +62,8 @@ async def predecir(request: Request):
     result = []
     for x, y in zip(req.familias, preds):
         y = max(0.0, float(y))
-        cf, cs = costs[x.familia_id]
-        # Order-up-to stock inferred from model residual uncertainty; asymmetric costs.
-        q_target = cf / (cf + cs)
-        sigma = float(getattr(cache.model, 'residual_sigma_', 0)) if hasattr(cache.model, 'residual_sigma_') else 0.0
-        # If no calibrated uncertainty is attached, use a conservative 10% demand spread.
-        sigma = max(sigma, 0.10 * y, 1.0)
-        from statistics import NormalDist
-        suggestion = max(0, math.ceil(y + NormalDist().inv_cdf(q_target) * sigma))
+        sigma = float(getattr(cache.model, 'residual_sigma_', 0))
+        suggestion = int(suggestions([y], [x.familia_id], costs, sigma)[0])
         result.append(PredictionItem(familia_id=x.familia_id, venta_esperada=round(y, 2), cantidad_sugerida=suggestion))
     save_predictions(req, q, cache.version, result)
     return PredictionResponse(tienda_id=req.tienda_id, fecha=req.fecha, version_modelo=cache.version,
