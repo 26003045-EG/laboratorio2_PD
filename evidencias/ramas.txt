@@ -1,0 +1,11 @@
+* dcdfc1e Comprueba el entrenamiento
+* cb05a7d Prepara la entrega
+* 650e82a Reprocesa fechas anteriores
+* 6a8bf31 Actualiza el modelo
+* ff82ee1 EvalÃºa los modelos
+* 89d8a7b Mantiene el servicio disponible
+* 8f4dae6 Agrega predicciones
+* e24fd5a Guarda las operaciones
+* e1be59f Valida los datos
+* 30d20de Prepara el proyecto
+* 65417a2 Inicia el proyecto
