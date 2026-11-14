@@ -1,5 +1,6 @@
 """Entrenamiento, calibración y evaluación temporal sin servicios externos."""
 import hashlib
+import json
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, RegressorMixin
@@ -49,7 +50,8 @@ def evaluate(df, costs, evaluation_start=None, evaluation_end=None):
     for label, fitted in [('baseline', baseline), ('candidato', model)]:
         result[label] = metrics(val.ventas.to_numpy(), fitted.predict(xv), val.familia_id, costs, fitted.residual_sigma_)
     used = pd.concat([train, cal, val]).sort_values(['fecha', 'tienda_id', 'familia_id'])
-    result['datos_sha256'] = hashlib.sha256(used.to_csv(index=False).encode()).hexdigest()
+    fingerprint = used.to_csv(index=False) + feature_table(used).to_csv(index=False) + json.dumps(costs, sort_keys=True)
+    result['datos_sha256'] = hashlib.sha256(fingerprint.encode()).hexdigest()
     result['ventanas'] = {name: {'inicio': str(frame.fecha.min().date()), 'fin': str(frame.fecha.max().date()), 'filas': len(frame)}
                           for name, frame in [('entrenamiento', train), ('calibracion', cal), ('evaluacion', val)]}
     base_cost = result['baseline']['costo_medio']

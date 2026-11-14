@@ -14,7 +14,7 @@
         "costo_medio": 41.24833333333333,
         "costo_total": 4949.799999999999
       },
-      "datos_sha256": "04522a27faccac4cbbeb25fcffb2ba5059b3e7e98fc91a04bc7688268aab0451",
+      "datos_sha256": "8aed07568a245b98d2a8a08a605b97839c2c6a0d94adc3b78da71b378cd30c4d",
       "ventanas": {
         "entrenamiento": {
           "inicio": "2024-03-01",
@@ -34,7 +34,7 @@
       },
       "mejora_costo_pct": 55.5597453784757,
       "fecha": "2026-02-27",
-      "clave": "2026-02-27-d978b4106af782a1a930ce9f9dda1fde62e6f0939e96ab03872bd6814e194d1c",
+      "clave": "2026-02-27-4b283dcea32329deaee33db538ae0f57c0bba98742f4544647dbba1ee7aeaf00",
       "politica": "temporal-cal28-hgb70-v1"
     },
     {
@@ -48,7 +48,7 @@
         "costo_medio": 73.68,
         "costo_total": 8841.6
       },
-      "datos_sha256": "3bd9ee53204d14c1d864171574bf8c1a60b012828addac818f9df90bf09fd81f",
+      "datos_sha256": "98b9a8d4dab9de57468eb85048fdcc4b2658a0c2e13efc253572793a6e08e21d",
       "ventanas": {
         "entrenamiento": {
           "inicio": "2024-03-01",
@@ -68,7 +68,7 @@
       },
       "mejora_costo_pct": 54.606083943011164,
       "fecha": "2026-02-28",
-      "clave": "2026-02-28-77149973eef439647ffe3b4c2ba20d0799b97965ee6b48a7477638c50297951b",
+      "clave": "2026-02-28-89fa69ebf07733efbd5c3712ef7801f0d93245b1e713352754eea3210f49315b",
       "politica": "temporal-cal28-hgb70-v1"
     }
   ]

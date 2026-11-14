@@ -15,7 +15,7 @@ Docker no est? instalado en esta terminal. Se intent? `docker compose up --build
 
 `python -m scripts.verificar_operacion` automatiza esas comprobaciones con Docker y genera operacion.json. El script construye im?genes, inicia servicios, env?a observaciones y predicciones, dispara un reentrenamiento, detiene temporalmente MLflow y reinicia el proyecto sin borrar vol?menes. Ejecutarlo en la ra?z tras preparar .env y datos.
 
-La prueba de persistencia PostgreSQL se ejecuta en CI con una base aislada mediante TEST_DATABASE_URL. No se afirma que haya pasado hasta comprobar el resultado de CI.
+CI ejecut? 31 pruebas y todas aprobaron, incluyendo PostgreSQL real y el registro, carga, alias y conservaci?n del campe?n en MLflow local. Evidencia: https://github.com/26003045-EG/laboratorio2_PD/actions/runs/43562724825. La prueba integrada fuerza el rechazo del candidato para comprobar que el baseline inicial se conserva. Esta ejecuci?n no valida Airflow ni Compose.
 
 Un intento de registro MLflow local no pudo completarse por permisos de directorios temporales de Windows en este entorno. Las pruebas unitarias del registro s? se ejecutan, pero no sustituyen la integraci?n MLflow/Airflow/Docker.
 

@@ -30,7 +30,8 @@ def backfill(start, end, database='shared/backfill/resultados.sqlite', tracking_
         for day in pd.date_range(start, end):
             # Huella solo de información utilizada hasta este día; no depende de días futuros.
             available = df[df.fecha <= day].sort_values(['fecha', 'tienda_id', 'familia_id'])
-            signature = hashlib.sha256((available.to_csv(index=False) + json.dumps(costs, sort_keys=True) + POLICY).encode()).hexdigest()
+            signature = hashlib.sha256((available.to_csv(index=False) + feature_table(available).to_csv(index=False)
+                                        + json.dumps(costs, sort_keys=True) + POLICY).encode()).hexdigest()
             key = f'{day.date()}-{signature}'
             previous = db.execute('SELECT informe FROM resultados WHERE clave=?', (key,)).fetchone()
             if previous:

@@ -23,7 +23,7 @@ El c?digo inicial proviene de una implementaci?n ya existente; esta reorganizaci
 
 Repositorio privado: https://github.com/26003045-EG/laboratorio2_PD
 
-Los PRs se crearon e integraron en orden sobre develop remoto, conservando las ramas y los commits originales. No se simularon revisiones ni aprobaciones. Los primeros siete est?n integrados; el octavo completa la validaci?n.
+Los PRs se crearon e integraron en orden sobre develop remoto, conservando las ramas y los commits originales. No se simularon revisiones ni aprobaciones. El PR de validaci?n incluye las pruebas completas y las evidencias; sus comprobaciones deben estar aprobadas antes de integrarlo.
 
 - `infraestructura`: https://github.com/26003045-EG/laboratorio2_PD/pull/1
 - `contratos-limpieza`: https://github.com/26003045-EG/laboratorio2_PD/pull/2
