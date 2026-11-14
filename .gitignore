@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+*.pyc
+data/entrada/*.csv
+shared/runs/*.json
+*.sqlite
+*.db
+*.zip
