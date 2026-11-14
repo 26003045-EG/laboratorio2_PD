@@ -50,7 +50,8 @@ def backfill(start, end, database='shared/backfill/resultados.sqlite', tracking_
                         mlflow.log_dict(report, 'evaluacion.json')
                         mlflow.log_params({'datos_sha256': report['datos_sha256'], 'politica': POLICY})
                         mlflow.log_metrics({f'{label}_{k}': v for label in ('baseline', 'candidato') for k, v in report[label].items()})
-                        mlflow.sklearn.log_model(model, artifact_path='modelo')
+                        mlflow.sklearn.log_model(model, artifact_path='modelo',
+                                                pip_requirements=['scikit-learn==1.6.1', 'pandas==2.2.3', 'numpy==1.26.4'])
             with db:
                 db.executemany('INSERT OR REPLACE INTO predicciones VALUES (?,?,?,?,?)',
                                [(key, int(row.tienda_id), str(row.familia_id), max(float(y), 0), int(q))

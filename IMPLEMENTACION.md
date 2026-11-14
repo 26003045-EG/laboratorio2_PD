@@ -19,10 +19,21 @@ main contiene la estructura inicial. develop integra progresivamente las ramas:
 
 El c?digo inicial proviene de una implementaci?n ya existente; esta reorganizaci?n no simula una historia anterior. Los commits tienen fechas reales y mensajes breves en espa?ol.
 
-## Publicaci?n pendiente
+## Publicaci?n
 
-Nombre aprobado: `26003045-EG/laboratorio2_PD`, privado. Falta autenticaci?n de GitHub para crear el repositorio y los PRs. No se afirma que los merges locales sean PRs.
+Repositorio privado: https://github.com/26003045-EG/laboratorio2_PD
 
-Al publicar, iniciar develop remoto desde el commit inicial y abrir los PRs de las ramas en el orden anterior, integr?ndolos con merge para conservar evidencia real. Posteriormente sincronizar develop local con el resultado remoto. El PR de develop a main y el tag entrega-lab2 quedan pendientes de las verificaciones de operaci?n.
+Los PRs se crearon e integraron en orden sobre develop remoto, conservando las ramas y los commits originales. No se simularon revisiones ni aprobaciones. Los primeros siete est?n integrados; el octavo completa la validaci?n.
 
-Docker no est? disponible en este equipo. La matriz de verificaciones est? en evidencias/PRUEBAS.md. No se cre? el tag de entrega sin validar operaci?n.
+- `infraestructura`: https://github.com/26003045-EG/laboratorio2_PD/pull/1
+- `contratos-limpieza`: https://github.com/26003045-EG/laboratorio2_PD/pull/2
+- `persistencia`: https://github.com/26003045-EG/laboratorio2_PD/pull/3
+- `prediccion`: https://github.com/26003045-EG/laboratorio2_PD/pull/4
+- `evaluacion-negocio`: https://github.com/26003045-EG/laboratorio2_PD/pull/5
+- `reentrenamiento`: https://github.com/26003045-EG/laboratorio2_PD/pull/6
+- `backfill`: https://github.com/26003045-EG/laboratorio2_PD/pull/7
+- `validacion-entrega`: https://github.com/26003045-EG/laboratorio2_PD/pull/8
+
+Entrega a main en borrador: https://github.com/26003045-EG/laboratorio2_PD/pull/9
+
+Docker no est? disponible en este equipo. El borrador y el tag entrega-lab2 quedan pendientes de verificar operaci?n, tiempos y persistencia. Consultar evidencias/PRUEBAS.md y ejecutar python -m scripts.verificar_operacion en un equipo con Docker. El propietario debe dar acceso al docente al repositorio privado.
