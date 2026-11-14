@@ -1,0 +1,12 @@
+{
+  "periodo_entrenamiento_fin": "2026-01-31",
+  "periodo_validacion_inicio": "2026-02-01",
+  "periodo_validacion_fin": "2026-02-28",
+  "registros_entrenamiento": 79692,
+  "registros_validacion": 3360,
+  "mae_baseline": 109.8521,
+  "mae_ml": 47.1731,
+  "costo_medio_baseline": 96.0882,
+  "costo_medio_ml": 37.6515,
+  "mejora_costo_pct": 60.8157
+}

@@ -3,7 +3,7 @@ from pathlib import Path
 import os
 import pandas as pd
 
-ROOT = Path(os.environ.get('DATA_DIR', '/project/data/entrada'))
+ROOT = Path(os.environ.get('DATA_DIR', str(Path(__file__).resolve().parents[1] / 'data/entrada')))
 
 @lru_cache(maxsize=1)
 def catalogs():

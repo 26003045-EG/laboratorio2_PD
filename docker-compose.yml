@@ -1,4 +1,4 @@
-name: novamercado-lab2
+name: laboratorio2-pd
 services:
   db:
     image: postgres:16.8

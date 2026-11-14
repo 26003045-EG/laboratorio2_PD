@@ -1,0 +1,75 @@
+{
+  "fechas": 2,
+  "predicciones": 240,
+  "repeticion_sin_duplicados": true,
+  "resultados": [
+    {
+      "baseline": {
+        "mae": 114.26666666666667,
+        "costo_medio": 92.81750000000001,
+        "costo_total": 11138.1
+      },
+      "candidato": {
+        "mae": 53.146229331477116,
+        "costo_medio": 41.24833333333333,
+        "costo_total": 4949.799999999999
+      },
+      "datos_sha256": "04522a27faccac4cbbeb25fcffb2ba5059b3e7e98fc91a04bc7688268aab0451",
+      "ventanas": {
+        "entrenamiento": {
+          "inicio": "2024-03-01",
+          "fin": "2026-01-29",
+          "filas": 79452
+        },
+        "calibracion": {
+          "inicio": "2026-01-30",
+          "fin": "2026-02-26",
+          "filas": 3360
+        },
+        "evaluacion": {
+          "inicio": "2026-02-27",
+          "fin": "2026-02-27",
+          "filas": 120
+        }
+      },
+      "mejora_costo_pct": 55.5597453784757,
+      "fecha": "2026-02-27",
+      "clave": "2026-02-27-d978b4106af782a1a930ce9f9dda1fde62e6f0939e96ab03872bd6814e194d1c",
+      "politica": "temporal-cal28-hgb70-v1"
+    },
+    {
+      "baseline": {
+        "mae": 196.35833333333332,
+        "costo_medio": 162.3125,
+        "costo_total": 19477.5
+      },
+      "candidato": {
+        "mae": 88.1730012100812,
+        "costo_medio": 73.68,
+        "costo_total": 8841.6
+      },
+      "datos_sha256": "3bd9ee53204d14c1d864171574bf8c1a60b012828addac818f9df90bf09fd81f",
+      "ventanas": {
+        "entrenamiento": {
+          "inicio": "2024-03-01",
+          "fin": "2026-01-30",
+          "filas": 79572
+        },
+        "calibracion": {
+          "inicio": "2026-01-31",
+          "fin": "2026-02-27",
+          "filas": 3360
+        },
+        "evaluacion": {
+          "inicio": "2026-02-28",
+          "fin": "2026-02-28",
+          "filas": 120
+        }
+      },
+      "mejora_costo_pct": 54.606083943011164,
+      "fecha": "2026-02-28",
+      "clave": "2026-02-28-77149973eef439647ffe3b4c2ba20d0799b97965ee6b48a7477638c50297951b",
+      "politica": "temporal-cal28-hgb70-v1"
+    }
+  ]
+}
