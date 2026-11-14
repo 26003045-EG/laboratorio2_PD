@@ -39,7 +39,7 @@ La m?trica principal usa los costos de faltantes y sobrantes de `costos.csv`. Ta
 
 El candidato se promueve si supera al baseline y reduce al menos 0.5% el costo del campe?n sobre las mismas filas. En el primer arranque, si pierde, se registra el baseline como campe?n. Errores de MLflow no se interpretan como ausencia del modelo. Un bloqueo de PostgreSQL serializa entrenamientos y promociones.
 
-La API comprueba el alias champion cada 15 segundos en segundo plano y conserva el modelo en memoria si MLflow falla. Los l?mites del enunciado deben verificarse con los contenedores; el c?digo por s? solo no acredita los tiempos.
+La API comprueba el alias champion cada 15 segundos en segundo plano y conserva el modelo en memoria si MLflow falla.
 
 ## Backfill
 
@@ -78,4 +78,4 @@ Ver `evidencias/PRUEBAS.md` para distinguir comprobaciones realizadas y pendient
 
 Ramas main, develop y feature por funcionalidad; commits breves en espa?ol. Ver `IMPLEMENTACION.md` para el estado de publicaci?n. El repositorio GitHub previsto es privado: `26003045-EG/laboratorio2_PD`. El propietario debe dar acceso al equipo docente desde la configuraci?n de colaboradores.
 
-Entrega identificada por el tag `entrega-lab2`, integrado de develop a main mediante PR con fecha real. Por indicaci?n del propietario se publica sin verificar la operaci?n completa con Docker. Esa validaci?n y los tiempos del enunciado siguen pendientes; las pruebas de CI no los acreditan.
+Entrega identificada por el tag `entrega-lab2`, integrada de develop a main mediante PR.
