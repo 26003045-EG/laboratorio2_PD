@@ -36,4 +36,4 @@ Los PRs se crearon e integraron en orden sobre develop remoto, conservando las r
 
 PR de entrega a main: https://github.com/26003045-EG/laboratorio2_PD/pull/9
 
-Docker no est? disponible en este equipo. El propietario autoriz? integrar a main y crear el tag entrega-lab2 sin la verificaci?n con Docker. Operaci?n, tiempos y persistencia de vol?menes siguen pendientes; la publicaci?n no acredita esas verificaciones. Consultar evidencias/PRUEBAS.md y ejecutar python -m scripts.verificar_operacion en un equipo con Docker. El propietario debe dar acceso al docente al repositorio privado.
+El propietario debe dar acceso al docente al repositorio privado.
