@@ -1,4 +1,5 @@
 from types import SimpleNamespace
+from contextlib import nullcontext
 import numpy as np
 import pytest
 from fastapi.testclient import TestClient
@@ -43,3 +44,14 @@ def test_administracion_no_disponible(client, monkeypatch):
 def test_estado_desconocido(client, monkeypatch):
     monkeypatch.setattr(module, 'airflow_request', lambda *a, **k: SimpleNamespace(status_code=404))
     assert client.get('/admin/reentrenar/no-existe').status_code == 404
+
+
+@pytest.mark.parametrize('scheduler,expected', [('healthy', 'ok'), ('unhealthy', 'degradado')])
+def test_salud_revisa_scheduler(client, monkeypatch, scheduler, expected):
+    monkeypatch.setattr(module.cache, 'available', True)
+    connection = SimpleNamespace(execute=lambda *a: None)
+    monkeypatch.setattr(module, 'engine', SimpleNamespace(connect=lambda: nullcontext(connection)))
+    monkeypatch.setattr(module.requests, 'get', lambda *a, **k: SimpleNamespace(
+        status_code=200, json=lambda: {'metadatabase': {'status': 'healthy'}, 'scheduler': {'status': scheduler}}))
+    response = client.get('/health')
+    assert response.status_code == 200 and response.json()['estado'] == expected

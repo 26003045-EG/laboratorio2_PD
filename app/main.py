@@ -135,6 +135,9 @@ def health():
         resp = requests.get(f'{AIRFLOW_URL}/health', timeout=3)
         if resp.status_code != 200:
             reasons.append('Airflow no disponible')
+        elif any(resp.json().get(component, {}).get('status') != 'healthy'
+                 for component in ('metadatabase', 'scheduler')):
+            reasons.append('Airflow no está listo para ejecutar tareas')
     except Exception:
         reasons.append('Airflow no disponible')
     return {'estado': 'degradado' if reasons else 'ok', **({'motivo': '; '.join(reasons)} if reasons else {})}
